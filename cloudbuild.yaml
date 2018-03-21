@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/metal-tile/dqn/$BRANCH_NAME:$COMMIT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ["push", "gcr.io/$PROJECT_ID/metal-tile/dqn/$BRANCH_NAME:$COMMIT_SHA"]
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    - set
+    - image
+    - deployment/dqn-node
+    - dqn-node=gcr.io/$PROJECT_ID/metal-tile/dqn/$BRANCH_NAME:$COMMIT_SHA
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=metal-tile'
+images: ['gcr.io/$PROJECT_ID/metal-tile/dqn/$BRANCH_NAME:$COMMIT_SHA']

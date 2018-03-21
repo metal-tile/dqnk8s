@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: dqn-node
+  name: dqn-node
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dqn-node
+    spec:
+      containers:
+      - image: gcr.io/metal-tile-dev1/metal-tile/dqn/master:765501333edec918fbbf4638d4d442fab26f06fa
+        name: dqn-node
+        ports:
+        - containerPort: 8081
+
