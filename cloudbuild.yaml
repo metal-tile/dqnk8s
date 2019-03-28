@@ -10,6 +10,6 @@ steps:
     - deployment/dqn-node
     - dqn-node=gcr.io/$PROJECT_ID/metal-tile/dqn/$BRANCH_NAME:$COMMIT_SHA
   env:
-    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
+    - 'CLOUDSDK_COMPUTE_ZONE=asia-northeast1-b'
     - 'CLOUDSDK_CONTAINER_CLUSTER=metal-tile'
 images: ['gcr.io/$PROJECT_ID/metal-tile/dqn/$BRANCH_NAME:$COMMIT_SHA']
